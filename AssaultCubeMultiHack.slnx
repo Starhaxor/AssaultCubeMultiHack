@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="AssaultCubeMultiHack.vcxproj" />
+  <Project Path="AssaultCubeMultiHack.vcxproj" Id="ab72130f-d877-4bfe-b4e5-90d727fcaad9" />
 </Solution>
