@@ -1,7 +1,10 @@
 #pragma once
 
-// Central menu theme: vintage heritage cream & gold.
-// Call once right after ImGui::CreateContext() (see menu::Initialize / InitializeGL).
+// ============================================================================
+// TEMA DOSYASI (theme.h / theme.cpp)
+// Renk degistirmek istediginde TEK bakacagin yer: theme.cpp icindeki
+// ApplyHeritageCream(). Tum renkler ve kose yuvarlakliklari oradadir.
+// ============================================================================
 namespace theme
 {
 	void ApplyHeritageCream();

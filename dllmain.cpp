@@ -7,6 +7,7 @@
 
 #include "hook.h"
 #include "render_hooks.h"
+#include "hacks.h"
 
 // Direct3D9 vtable indices for the device methods we hook.
 constexpr int ENDSCENE_INDEX = 42; // IDirect3DDevice9::EndScene
@@ -57,6 +58,15 @@ static DWORD WINAPI MainThread(LPVOID)
     return hooked ? 0 : 1;
 }
 
+static DWORD WINAPI HacksThread(LPVOID)
+{
+    // Wait for the game module, then run the feature worker.
+    for (int i = 0; i < 300 && !GetModuleHandleA("ac_client.exe"); ++i)
+        Sleep(100);
+    hacks::Start();
+    return 0;
+}
+
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call)
@@ -64,8 +74,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     case DLL_PROCESS_ATTACH:
         DisableThreadLibraryCalls(hModule);
         CreateThread(nullptr, 0, MainThread, nullptr, 0, nullptr);
+        CreateThread(nullptr, 0, HacksThread, nullptr, 0, nullptr);
         break;
     case DLL_PROCESS_DETACH:
+        hacks::Stop();
+        patches::Shutdown();
         render_uninstall();
         if (g_wglSwapBuffersTarget) hook::uninstall(g_wglSwapBuffersTarget);
         if (g_endSceneTarget) hook::uninstall(g_endSceneTarget);

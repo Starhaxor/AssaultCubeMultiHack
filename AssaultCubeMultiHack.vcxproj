@@ -149,10 +149,11 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="menu.h" />
-    <ClInclude Include="menu_aimbot.h" />
-    <ClInclude Include="menu_misc.h" />
+    <ClInclude Include="menu_sections.h" />
     <ClInclude Include="menu_state.h" />
-    <ClInclude Include="menu_visuals.h" />
+    <ClInclude Include="offsets.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="hacks.h" />
     <ClInclude Include="theme.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="hook.h" />
@@ -173,10 +174,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="menu.cpp" />
-    <ClCompile Include="menu_aimbot.cpp" />
-    <ClCompile Include="menu_misc.cpp" />
+    <ClCompile Include="menu_sections.cpp" />
     <ClCompile Include="menu_state.cpp" />
-    <ClCompile Include="menu_visuals.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="hacks.cpp" />
     <ClCompile Include="theme.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

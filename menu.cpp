@@ -7,9 +7,7 @@
 
 #include "menu.h"
 #include "menu_state.h"
-#include "menu_aimbot.h"
-#include "menu_visuals.h"
-#include "menu_misc.h"
+#include "menu_sections.h"
 #include "theme.h"
 
 namespace
@@ -28,6 +26,7 @@ namespace menu
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
+		ImGui::GetIO().IniFilename = nullptr; // no imgui.ini: sections always open fresh
 		theme::ApplyHeritageCream();
 
 		if (!ImGui_ImplWin32_Init(hwnd) || !ImGui_ImplDX9_Init(device))
@@ -49,6 +48,7 @@ namespace menu
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
+		ImGui::GetIO().IniFilename = nullptr; // no imgui.ini: sections always open fresh
 		theme::ApplyHeritageCream();
 
 		if (!ImGui_ImplWin32_Init(hwnd) || !ImGui_ImplOpenGL2_Init())
@@ -92,10 +92,13 @@ namespace menu
 		if (!show)
 			return;
 
-		ImGui::SetNextWindowSize(ImVec2(360, 260), ImGuiCond_FirstUseEver);
-		ImGui::Begin("Assault Cube MultiHack", &show, ImGuiWindowFlags_AlwaysAutoResize);
+		ImGui::SetNextWindowSize(ImVec2(360, 200), ImGuiCond_Once);
+		ImGui::Begin("Assault Cube MultiHack", &show,
+			ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
+		RenderPlayerSection();
 		RenderAimbotSection();
 		RenderVisualsSection();
+		RenderMovementSection();
 		RenderMiscSection();
 		ImGui::End();
 	}

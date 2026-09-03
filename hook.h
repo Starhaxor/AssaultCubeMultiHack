@@ -2,6 +2,9 @@
 #include <windows.h>
 #include <cstdint>
 
+// HOOK MOTORU - dokunma. Fonksiyonlari arada yakalamak icin kullanilir
+// (orn: wglSwapBuffers). Nasil kullanildigini gormek icin dllmain.cpp'ye bak.
+
 namespace hook
 {
     // Installs an inline (detour) hook for x86 (32-bit) targets.

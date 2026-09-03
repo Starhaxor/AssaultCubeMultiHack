@@ -2,6 +2,9 @@
 
 #include <d3d9.h>
 
+// CIZIM KANCALARI - dokunma. Oyunun her karesinde menuyu ve ESP'yi ekrana
+// cizer. Yeni cizim eklemek istersen hacks::RenderOverlay() icine yaz.
+
 using EndScene_t = HRESULT(APIENTRY*)(IDirect3DDevice9*);
 using Reset_t = HRESULT(APIENTRY*)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
 using WglSwapBuffers_t = BOOL(WINAPI*)(HDC);
